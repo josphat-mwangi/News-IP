@@ -23,7 +23,7 @@ def source(source_id):
 
 
 @app.route('/article')
-def source(source_id):
+def source(article_id):
     '''
     View article page function that returns article details page and its data
     '''
