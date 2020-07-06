@@ -1,0 +1,17 @@
+{% import 'macros.html' as macro %} 
+{% block content %}
+
+<div class="cntainer-fluid">
+    <h1 class="text-center">
+        News Source
+    </h1>
+    <hr style="color: gold;">
+
+    {% for source in sources %}
+        {% source.id %}
+        {% source.name %}
+        {% source.Category %}
+    {% endfor %}
+</div>
+
+{% endblock %}
