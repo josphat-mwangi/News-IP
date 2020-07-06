@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect,url_for
 from app import app
 from .request import get_source, get_article, search_source
 
@@ -26,7 +26,13 @@ def source(source_id):
     business = get_source('business')
     searched_source = search_source(source_name_format)
 
-    return render_template('source.html' sport=sport, politics=politics, business=business)
+    search_source = request.args.get('source_query')
+
+    if search_source:
+        return redirect(url_for('search', source_name=search_source))
+    else:
+
+        return render_template('source.html' sport=sport, politics=politics, business=business)
 
 
 @app.route('/article')
