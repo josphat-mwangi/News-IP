@@ -3,7 +3,7 @@ class Source:
     News_source class that defines source objects
     '''
 
-    def __init__(self, id, name):
+    def __init__(self, id, name, category):
         '''
         initilazing application
 
