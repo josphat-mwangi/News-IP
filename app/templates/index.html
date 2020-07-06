@@ -2,8 +2,8 @@
 {% import 'macros.html' as macro%}
 
 {% block styles%}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+  {{ super() }}
+  <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -13,4 +13,4 @@
     
   </div>
 
-
+{% endblock %}

@@ -1,24 +1,25 @@
 {% import 'macros.html' as macro %} 
 {% block content %}
-<div class="container">
-    <form>
-        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
-        <input type="submit" value="Submit" class="btn btn-default">
-    </form>
+    <div class="container">
+        <form>
+            <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+            <input type="submit" value="Submit" class="btn btn-default">
+        </form>
 
-</div>
+    </div>
 
-<div class="cntainer-fluid">
-    <h1 class="text-center">
+
+    <div class="cntainer-fluid">
+        <h1 class="text-center">
         News Source
-    </h1>
-    <hr style="color: gold;">
+        </h1>
+        <hr style="color: gold;">
 
-    {% for source in sources %}
-        {% source.id %}
-        {% source.name %}
-        {% source.Category %}
-    {% endfor %}
-</div>
+        {% for source in sources %}
+            {% source.id %}
+            {% source.name %}
+            {% source.Category %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

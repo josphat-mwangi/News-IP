@@ -1,37 +1,33 @@
-{% macro displaySources(source_list)%}
-{% for source in source_list %}
-<div class="col-md-6">
-    <li>
-        <a href="/source/{{source.id}}">{{source.name}}</a>
+{% macro displaySources(source_list) %}
+    {% for source in source_list %}
+        <div class="col-md-6">
+            <li>
+                <a href="/source/{{source.id}}">{{source.name}}</a>
 
-    </li>
-</div>
-{% endfor %}
+            </li>
+        </div>
+    {% endfor %}
 {% endmacro %}
 
 
-
-
-
-
 {% macro displayArticles(article_list) %}
-{% for article in article_list %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h2>{{article.title}}</h2>
-            <h3>{{article.name}}</h3>
-            <img src="{{article.urlToImage}}" alt="article.title class="img-responsive">
-            <p>{{article.description}}</p>
-            <hr>
-            <li class="text-center">
-                <a href="/article">
-                    {{ article.title|truncate(30)}}</a>
-            </li>
-        </div>
-        
+    {% for article in article_list %}
+        <div class="container">
 
-    </div>
-</div>
-{% endfor %}
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>{{article.title}}</h2>
+                    <h3>{{article.name}}</h3>
+                    <img src="{{article.urlToImage}}" alt="article.title class="img-responsive">
+                    <p>{{article.description}}</p>
+                    <hr>
+
+                    <li class="text-center">
+                        <a href="/article">
+                        {{ article.title|truncate(30)}}</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endmacro %}

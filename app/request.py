@@ -1,5 +1,5 @@
-from urllib.request, json
-from .models import Source, Articles
+import urllib.request,json
+from .models import Source,Articles
 
 # Getting api key
 api_key = None
@@ -14,7 +14,7 @@ def configure_request(app):
     Create a function configure_request
 
     '''
-    global article_url, source_url
+    global api_key, article_url, source_url
     api_key = app.config['NEWS_API_KEY']
     article_url = app.config['ARTICLE_API_BASE_URL']
     source_url = app.config['SOURCE_API_BASE_URL']
@@ -39,8 +39,6 @@ def get_source(Category):
 
     return source_results
 
-
-...
 
 
 def process_results(movie_list):
