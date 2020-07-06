@@ -1,52 +1,16 @@
 {% extends 'base.html%}
 {% import 'macros.html' as macro%}
 
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <h1 text-center> Welcome to Today's news</h1>
     <hr style="color: gold;">
-    <div class="row">
-      <!--Politics-->
-      <div class="col-md-6">
-        <div class="panel panel-primay">
-          <div class="panel-heading">
-            <h1>Politics</h1>
-
-          </div>
-          <div class="panel-body">
-            <ul>
-              {{macro.dispalySource(Politics)}}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-primay">
-          <div class="panel-heading">
-            <h1>Sports</h1>
-      
-          </div>
-          <div class="panel-body">
-            <ul>
-              {{macro.dispalySource(Sports)}}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel panel-primay">
-          <div class="panel-heading">
-            <h1>Business</h1>
-      
-          </div>
-          <div class="panel-body">
-            <ul>
-              {{macro.dispalySource(Business)}}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
 
