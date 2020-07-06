@@ -11,6 +11,7 @@ def index():
 
     '''
     title = 'Home - Welcome to The best News and Article website Online'
+
     return render_template('index.html', title=title)
 
 
@@ -19,7 +20,11 @@ def source(source_id):
     '''
     View source page function that returns source details page and its data
     '''
-    return render_template('source.html')
+    sport = get_source('sport')
+    politics = get_source('politics')
+    business = get_source('business')
+
+    return render_template('source.html' sport=sport, politics=politics, business=business)
 
 
 @app.route('/article')
@@ -27,4 +32,5 @@ def source(article_id):
     '''
     View article page function that returns article details page and its data
     '''
-    return render_template('article.html')
+    article = get_article()
+    return render_template('article.html' article=article)
