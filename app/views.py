@@ -1,5 +1,6 @@
 from flask import render_template
 from app import app
+from .request import get_source, get_article, search_source
 
 # views
 
@@ -23,6 +24,7 @@ def source(source_id):
     sport = get_source('sport')
     politics = get_source('politics')
     business = get_source('business')
+    searched_source = search_source(source_name_format)
 
     return render_template('source.html' sport=sport, politics=politics, business=business)
 
