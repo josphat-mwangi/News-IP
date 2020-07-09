@@ -15,6 +15,15 @@ Built By [Josphat Mwangi](https://github.com/josphat-mwangi)
 ## Description
 In context, your parents are busy workers and they get home really late. They always miss the news and they are very frustrated since they can't keep up with current affairs. You are a developer and will use your skills and prowess to remedy this problem. This application will help them list and preview news articles from various sources
 
+## Behaviour Driven Development
+
+1. display an option to select  source
+    - INPUT:"Select  source"
+    - OUTPUT:"Display Top News Sources"
+2. display an option to select Article 
+    - INPUT:"Select Article"
+    - OUTPUT:"Display Top Headlines"
+
 ## Setup and Installation
 - Install python3.6
 - Run chmod a+x start.sh
