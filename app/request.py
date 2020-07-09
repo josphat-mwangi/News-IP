@@ -1,6 +1,6 @@
 import urllib.request,json
 from .models import Source,Articles
-
+import requests
 # Getting api key
 api_key = None
 
@@ -16,111 +16,93 @@ def configure_request(app):
     '''
     global api_key, article_url, source_url
     api_key = app.config['NEWS_API_KEY']
+    print(api_key)
     article_url = app.config['ARTICLE_API_BASE_URL']
+
     source_url = app.config['SOURCE_API_BASE_URL']
 
 
-def get_source(Category):
+
+
+def get_sources():
     '''
-    function that gets the json response to our url request
-
+    Function that gets the json response to our url request
     '''
-    get_source = source_url.format(Category, api_key)
-    with urllib.request.urlopen(get_source) as url:
-        get_source_data = url.read()
-        get_source_response = json.loads(get_source_data)
+    get_sources_url = source_url.format(api_key)
 
-        source_results = None
+    get_process_response = requests.get(get_sources_url).json()
 
-        if get_source_response['results']:
-            source_results_list = get_source_response['results']
+    
+    
 
-            source_results = process_results(source_results_list)
+    sources_results = None
+    
 
-    return source_results
+    if get_process_response['sources']:
+        sources_results_list = get_process_response['sources']
+        sources_results = process_sources(sources_results_list)
+
+    return sources_results
 
 
-
-def process_results(movie_list):
+def process_sources(sources_list):
     '''
-    Function  that processes the movie result and transform them to a list of Objects
-
+    Function that processes the news sources results and turns them into a list of objects
     Args:
-        movie_list: A list of dictionaries that contain movie details
-
-    Returns :
-        movie_results: A list of movie objects
+            sources_list: A list of dictionaries that contain sources details
+    Returns:
+            sources_results: A list of sources objects
     '''
-    source_results = []
-    for source_item in source_list:
-        id = source_item.get('id')
-        name = source_item.get('name')
-        Category = source_item.get('Category')
+    sources_results = []
 
-        if Category:
-            movie_object = Movie(id, name, Category)
-            source_results.append(source_object)
+    for source_item in sources_list:
+        id = source_item['id']
+        name = source_item['name']
+        description = source_item['description']
+        url = source_item['url']
+    
+        category = source_item['category'] 
+        if name:
+            sources_object = Source(id, name, url, description, category)
+            sources_results.append(sources_object)
 
-    return source_results
+    return sources_results
 
 
-def get_article(source):
+def get_articles():
     '''
-    function that process the article results and transform them to a 
+    Function that processes the articles and returns a list of articles objects
     '''
-    get_article_url = article_url.format(api_key)
+    get_articles_url = article_url.format(api_key)
 
-    with urllib.request.urlopen(get_article_url)as url:
-        get_article_data = url.read()
-        get_article_response = json.loads(get_article_data)
+    with urllib.request.urlopen(get_articles_url) as url:
+        articles_results = json.loads(url.read())
 
-        article_results = None
+        articles_object = None
+        if articles_results['articles']:
+            articles_object = process_articles(articles_results['articles'])
 
-        if get_article_response['articles']:
-            article_results_list = get_article_response['article']
-            article_results = process_results(article_results_list)
-
-    return article_results
+    return articles_object
 
 
-def process_results(article_list):
+def process_articles(articles_list):
     '''
-    Function  that processes the article result and transform them to a list of Objects
-
-    Args:
-        article_list: A list of dictionaries that contain article details
-
-    Returns :
-        article_results: A list of article objects
+    Function that processes the articles and returns a list of articles objects
     '''
-    article_results = []
-    for article_item in article_list:
-        author = article_item.get('author')
-        title = article_item.get('original_title')
-        description = article_item.get('description')
-        url = article_item.get('url')
-        urlToImage = article_item.get('urlToImage')
-        publishdate = movie_item.get('publishedAt')
+    articles_object = []
+    for article_item in articles_list:
+        
+        author = article_item['author']
+        title = article_item['title']
+        description = article_item['description']
+        url = article_item['url']
+        urlToImage = article_item['urlToImage']
+        publishedAt = article_item['publishedAt']
 
         if urlToImage:
-            article_object = Articles(
-                author, title, description, url, urlToImage, publishe)
-            article_results.append(article_object)
+            articles_result = Articles(author, title, description, url, urlToImage, publishedAt)
+            articles_object.append(articles_result)
 
-    return article_results
+    return articles_object
 
 
-def search_source(source_name):
-    search_sourec_url = 'http: // newsapi.org/v2/everything?q{}apiKey = {}'.format(
-        api_key, source_name)
-    with urllib.request.urlopen(search_source_url) as url:
-        search_source_data = url.read()
-        search_source_response = json.loads(search_source_data)
-
-        search_source_results = None
-
-        if search_source_response['results']:
-            search_source_list = search_source_response['results']
-            search_source_results = process_results(search_source_list)
-
-    return search_source_results

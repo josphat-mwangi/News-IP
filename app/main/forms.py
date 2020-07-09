@@ -5,6 +5,8 @@ from flask_wtf import FlaskForm
 
 class ReviewForm(FlaskForm):
 
-    title = StringField('', validators=[Required()])
-    review = TextAreaField('', validators=[Required()])
+    title = StringField('Review title', validators=[Required()])
+    review = TextAreaField('Movie review', validators=[Required()])
     submit = SubmitField('Submit')
+
+   

@@ -1,22 +1,20 @@
 {% extends 'base.html'%}
-<!-- Content block -->
-{% block content %}
-  <div class="container">
-    <!-- Poster background -->
-    <div class="row">
-      <div
-      class="col-xs-6 col-sm-6 col-md-6 col-lg-6 posterPath"
-      style="background: url({{article.urlToImage}}) no-repeat center center">
+{% block content%}
+<div class="container">
 
-
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
-          <h3>{{ article.author }}</h3>
-
-          <p class="overview">{{ article.title }}</p>
-          <p class="ratings">
-            <b> {{ article.description }}</b> - <i>{{ article.publis}} votes </i>
-          </p>
-        </div>
+  <!-- Popular News section  -->
+  <h3 class="text-center"> Top Headlines</h3>
+  {%for articles in article %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{articles.urlToImage}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title text-center">{{articles.title}}</h5>
+      <p class="card-text">{{articles.description}}
+      </p>
+      <a href="{{articles.url}}" class="btn btn-primary text-center">Read More</a>
+      <p class="card-text text-center"><small class="text-muted">{{articles.author}}</small></p>
     </div>
   </div>
-{% endblock %}
+  {% endfor %}
+</div>
+{% endblock%}

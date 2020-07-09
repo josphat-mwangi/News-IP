@@ -1,8 +1,9 @@
 from flask import render_template, request, redirect,url_for
 from . import main
-from ..request import get_source, get_article, search_source
-
-# views
+from ..request import get_sources, get_articles
+# from newsapi import NewsApiClient
+# # views
+from ..models import Source
 
 
 @main.route('/')
@@ -17,27 +18,27 @@ def index():
 
 
 @main.route('/source')
-def source(source_id):
+def source():
     '''
     View source page function that returns source details page and its data
     '''
-    sport = get_source('sport')
-    politics = get_source('politics')
-    business = get_source('business')
-    searched_source = search_source(source_name_format)
+    sources = get_sources()
+    # print(sources)
+    # sports_sources = get_sources()
+    # technology_sources = get_sources()
+    # entertainment_sources = get_sources()
+    
+    return render_template('source.html',  sources=sources)
 
-    search_source = request.args.get('source_query')
-
-    if search_source:
-        return redirect(url_for('search', source_name=search_source))
-    else:
-        return render_template('source.html', sport = sport, politics = politics, business = business)
+        
+    
 
 
-# @main.route('/article')
-# def source(article_id):
-#     '''
-#     View article page function that returns article details page and its data
-#     '''
-#     article = get_article()
-#     return render_template('article.html', article=article)
+@main.route('/article')
+def article():
+    '''
+    View article page function that returns article details page and its data
+    '''
+    article = get_articles()
+    return render_template('article.html', article=article)
+    

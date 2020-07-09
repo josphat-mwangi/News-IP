@@ -1,25 +1,15 @@
-{% import 'macros.html' as macro %} 
-{% block content %}
-    <div class="container">
-        <form>
-            <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
-            <input type="submit" value="Submit" class="btn btn-default">
-        </form>
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
 
-    </div>
+{% block content%}
+<div class="container">
+    <!-- Business News Section  -->
+    <h3> Top  News Sources</h3>
+    <hr>
+ 
+    {{ macro.displaySources(sources)}}
+
+</div>
 
 
-    <div class="cntainer-fluid">
-        <h1 class="text-center">
-        News Source
-        </h1>
-        <hr style="color: gold;">
-
-        {% for source in sources %}
-            {% source.id %}
-            {% source.name %}
-            {% source.Category %}
-        {% endfor %}
-    </div>
-
-{% endblock %}
+{%endblock%}

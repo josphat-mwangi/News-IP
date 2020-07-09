@@ -3,14 +3,16 @@ class Source:
     News_source class that defines source objects
     '''
 
-    def __init__(self, id, name, Category):
+    def __init__(self, id, name, url, description, category):
         '''
         initilazing application
 
         '''
         self.id = id
         self.name = name
-        self.Category = Category
+        self.url = url
+        self.description = description
+        self.category = category
 
 
 class Articles:
@@ -19,11 +21,12 @@ class Articles:
 
     '''
 
-    def __init__(self, author, title, description, Url, urlToImage, publishedAt, content):
+    def __init__(self, author, title, description, url, urlToImage, publishedAt):
+        
         self.author = author
         self.title = title
         self.description = description
         self.url = url
         self.urlToImage = urlToImage
         self.publishedAt = publishedAt
-        self.content = content
+        
