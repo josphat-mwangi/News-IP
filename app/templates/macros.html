@@ -1,21 +1,27 @@
 {% macro displaySources(sources_results) %}
     {% for source in sources_results %}
-        <div class="container">
-            <div class="row">
-                <div class="card text-center">
-                    <div class="card-header">
-                        {{source.id}}
+        <div>
+            <div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="card text-center">
+                        <div class="card border-primary mb-3">
+                            <div class="card-header">
+                                {{source.id}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{source.name}}</h5>
+                                <p class="card-text">{{source.description}}</p>
+                                <a href="{{source.url}}" class="btn btn-primary">Read More</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                {{source.category}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{source.name}}</h5>
-                        <p class="card-text">{{source.description}}</p>
-                        <a href="{{source.url}}" class="btn btn-primary">Know More</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        {{source.category}}
-                    </div>
+
                 </div>
-            </div>        
+                    
+            </div>     
         </div>
     {% endfor %}
 {% endmacro %}

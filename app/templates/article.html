@@ -1,18 +1,23 @@
 {% extends 'base.html'%}
 {% block content%}
-<div class="container">
+<div>
 
   <!-- Popular News section  -->
   <h3 class="text-center"> Top Headlines</h3>
   {%for articles in article %}
-  <div class="card" style="width: 18rem;">
-    <img src="{{articles.urlToImage}}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title text-center">{{articles.title}}</h5>
-      <p class="card-text">{{articles.description}}
-      </p>
-      <a href="{{articles.url}}" class="btn btn-primary text-center">Read More</a>
-      <p class="card-text text-center"><small class="text-muted">{{articles.author}}</small></p>
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <div class="card">
+      <img src="{{articles.urlToImage}}" heigh="100px" width="200px" class="card-img-top text-center" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{articles.title}}</h5>
+        <p class="card-text text-center">{{articles.description}}
+        </p>
+    
+        <p class="card-text text-center"><small class="text-muted">{{articles.author}}</small></p>
+        <p class="card-text text-center"><small class="text-muted">{{articles.publishedAt}}</small></p>
+        <a href="{{articles.url}}" class="btn btn-primary text-center">Read More</a>
+    
+      </div>
     </div>
   </div>
   {% endfor %}
